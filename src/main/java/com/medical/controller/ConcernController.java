@@ -4,7 +4,7 @@ package com.medical.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.medical.entity.User;
 import com.medical.service.impl.ConcernServiceImpl;
-import com.medical.util.PageList;
+import com.medical.util.PageListUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +41,7 @@ public class ConcernController {
     public Map<String, Object> selectConcern(HttpSession session, @RequestParam("pageSize") Integer pageSize, @RequestParam("pageIndex") Integer pageIndex){
         User user=(User)session.getAttribute("user");
         List<User> users = concernService.selectConcern(user.getId());
-        Page<Object> pageList = PageList.pageList(users, pageSize, pageIndex);
+        Page<Object> pageList = PageListUtil.pageList(users, pageSize, pageIndex);
         HashMap<String, Object> map = new HashMap<>();
         map.put("success",pageList);
         return map;

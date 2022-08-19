@@ -11,7 +11,7 @@ import java.util.List;
  * @Date: 2022/8/17 8:52
  * @Description:
  */
-public class PageList {
+public class PageListUtil {
     public static Page<Object> pageList(List list, Integer pageSize, Integer pageIndex){
         Page<Object> page = new Page<>();
         int size = list.size();

@@ -1,5 +1,6 @@
 package com.medical.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.medical.entity.Consulting;
 import com.medical.mapper.ConsultingMapper;
@@ -26,5 +27,13 @@ public class ConsultingServiceImpl extends ServiceImpl<ConsultingMapper, Consult
     @Override
     public List selectConsulting(int uid) {
         return consultingMapper.selectConsulting(uid);
+    }
+
+    public List<Consulting> servedNumber(){
+        QueryWrapper<Consulting> wrapper = new QueryWrapper<>();
+        wrapper.select("count(doid) as id,doid");
+        wrapper.groupBy("doid");
+        List<Consulting> consultings = consultingMapper.selectList(wrapper);
+        return consultings;
     }
 }

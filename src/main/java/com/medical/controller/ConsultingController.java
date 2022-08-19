@@ -1,8 +1,10 @@
 package com.medical.controller;
 
 
+import com.medical.entity.Consulting;
 import com.medical.entity.User;
 import com.medical.service.ConsultingService;
+import com.medical.service.impl.ConsultingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,7 @@ import java.util.List;
 @RequestMapping("/medical/consulting")
 public class ConsultingController {
     @Autowired
-    private ConsultingService consultingService;
+    private ConsultingServiceImpl consultingService;
 
     /**
      * 杨俊武
@@ -38,4 +40,15 @@ public class ConsultingController {
         return list;
     }
 
+    /**
+     * JiaJieTang
+     * 医生咨询记录总和
+     * 注意：此返回值id为该医生咨询记录综合
+     * @return
+     */
+    @GetMapping("servedNumber")
+    public List<Consulting> servedNumber(){
+        List<Consulting> list = consultingService.servedNumber();
+        return list;
+    }
 }
